@@ -7,9 +7,9 @@ const welcomeUnsuccessfulOutput = JSON.stringify({ "output":"<speak>Welcome back
 const answerSuccessfulOutput = JSON.stringify({ "output":"<speak>That's right! Thanks for playing.</speak>" });
 const answerIncorrectOutput = JSON.stringify({ "output": "<speak>Sorry, that's wrong! Thanks for playing.</speak>" });
 const answerUnSuccessfulOutput = JSON.stringify({ "output":"<speak>Sorry! Looks like you've already tried to answer this one!</speak>" });
-const correctAnswerInput = JSON.stringify({ "userId": "1234", "type": "IntentRequest", "intent": { "values": [{ "locale": "en_US", "type": "answer", "slot": "d" }] } });
-const incorrectAnswerInput = JSON.stringify({ "userId": "1234", "type": "IntentRequest", "intent": { "values": [{ "locale": "en_US", "type": "answer", "slot": "c" }] } });
-const launchInput = JSON.stringify({ "userId": "1234", "type": "LaunchRequest" });
+const correctAnswerInput = { userId: "1234", type: "IntentRequest", intent: { values: [{ locale: "en_US", type: "answer", slot: "d" }] } }
+const incorrectAnswerInput = { userId: "1234", type: "IntentRequest", intent: { values: [{ locale: "en_US", type: "answer", slot: "c" }] } }
+const launchInput = { userId: "1234", type: "LaunchRequest" };
 
 describe('happy path', function(){
   var controller = new Controller;
