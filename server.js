@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const express = require('express');
 const app = express();
 const Controller = require('./lib/Controller.js');
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.post('/', function (req, res){
   var postBody = req.body;
   res.send(controller.processInput(postBody));
-})
+});
 
 
 app.listen(3000);

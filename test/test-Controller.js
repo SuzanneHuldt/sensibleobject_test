@@ -7,6 +7,7 @@ const welcomeUnsuccessfulOutput = JSON.stringify({ "output":"<speak>Welcome back
 const answerSuccessfulOutput = JSON.stringify({ "output":"<speak>That's right! Thanks for playing.</speak>" });
 const answerIncorrectOutput = JSON.stringify({ "output": "<speak>Sorry, that's wrong! Thanks for playing.</speak>" });
 const answerUnSuccessfulOutput = JSON.stringify({ "output":"<speak>Sorry! Looks like you've already tried to answer this one!</speak>" });
+const answerUnSuccessfulNoQuestionOutput = JSON.stringify({ "output":"<speak>Sorry, I don't know what question you're answering!.</speak>" });
 const correctAnswerInput = { userId: "1234", type: "IntentRequest", intent: { values: [{ locale: "en_US", type: "answer", slot: "d" }] } }
 const incorrectAnswerInput = { userId: "1234", type: "IntentRequest", intent: { values: [{ locale: "en_US", type: "answer", slot: "c" }] } }
 const launchInput = { userId: "1234", type: "LaunchRequest" };
@@ -24,7 +25,7 @@ describe('happy path', function(){
 describe('unhappy path: answer before question', function(){
   var controller = new Controller;
   it('returns error message if IntentRequest sent before LaunchRequest', function(){
-    expect(controller.processInput(correctAnswerInput)).to.equal(answerUnSuccessfulOutput);
+    expect(controller.processInput(correctAnswerInput)).to.equal(answerUnSuccessfulNoQuestionOutput);
   });
 });
 
@@ -48,7 +49,6 @@ describe('unhappy path: question answered twice', function(){
   var controller = new Controller;
   controller.processInput(launchInput);
   controller.processInput(incorrectAnswerInput);
-  var controller = new Controller;
   it('returns error message if answer is attempted twice with IntentRequest', function(){
     expect(controller.processInput(correctAnswerInput)).to.equal(answerUnSuccessfulOutput);
   });
